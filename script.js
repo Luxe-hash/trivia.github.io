@@ -464,11 +464,16 @@ function answerQuestion(index) {
 
   // Dar tiempo para que la clase vea el error
   setTimeout(() => {
-    locked = false;
-    passAfterAttempt(false);
-  }, 1200);
-}
+  // Volver a habilitar las respuestas para el siguiente equipo
+  document.querySelectorAll(".answer-btn").forEach(btn => {
+    btn.disabled = false;
+  });
 
+  locked = false;
+
+  // Pasar el turno al siguiente equipo
+  passAfterAttempt(false);
+}, 1200);
 function passAfterAttempt(timeout) {
   clearInterval(timer);
 
